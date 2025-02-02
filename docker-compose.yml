@@ -1,0 +1,13 @@
+services:
+  ungoogled-sentinel:
+    image: redr00t/ungoogled-sentinel:latest
+    environment:
+      - CHECK_INTERVAL_MINUTES=30
+      - WEBHOOK_URL=https://discord.com/api/webhooks/..............
+      - VERSION_FILE=/data/last_version.txt
+      - LANGUAGE=en
+      - ARCHITECTURE=x64
+      - PACKAGE_TYPE=installer
+    volumes:
+      - ./Ungoogled-Sentinel/data:/data
+    restart: always
