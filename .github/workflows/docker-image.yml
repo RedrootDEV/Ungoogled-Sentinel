@@ -29,7 +29,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64,linux/armv7  # Arquitecturas soportadas
+          platforms: linux/amd64,linux/arm64  # Arquitecturas soportadas
           push: true
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/ungoogled-sentinel:latest
