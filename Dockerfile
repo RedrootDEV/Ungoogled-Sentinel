@@ -10,4 +10,4 @@ COPY main.py .
 
 RUN pip install requests
 
-CMD ["python", "main.py"]
+CMD ["python", "-u", "main.py"]
