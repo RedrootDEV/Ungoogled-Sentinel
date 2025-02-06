@@ -8,6 +8,7 @@
 - Sends detailed notifications via **Discord Webhook**.
 - Provides direct download links for **Installer** and **Portable** versions.
 - Supports **English** and **Spanish** notifications.
+- Written in **Go** for high performance and low resource consumption.
 
 ## 🐳 Running with Docker Compose
 
@@ -17,6 +18,7 @@
 	services:
 	  ungoogled-sentinel:
 		image: redr00t/ungoogled-sentinel:latest
+		container_name: ungoogled-sentinel
 		environment:
 		  - CHECK_INTERVAL_MINUTES=30
 		  - WEBHOOK_URL=https://discord.com/api/webhooks/..............
@@ -30,10 +32,15 @@
    ```
 
 ## ⚙️ Installation (Manual)
-1. Install Python (3.7+ recommended).
-2. Install dependencies:
+1. Install Go (1.21+ recommended).
+2. Clone the repository:
    ```sh
-   pip install -r requirements.txt
+	git clone https://github.com/RedrootDEV/Ungoogled-Sentinel.git
+	cd Ungoogled-Sentinel
+   ```
+2. Build the application:
+   ```sh
+   go build -o ungoogled-sentinel main.go
    ```
 
 3. Set environment variables:
@@ -48,8 +55,8 @@
 
 - Run the script manually with:
    ```sh
-   python main.py
+   ./ungoogled-sentinel
    ```
 
 ## 📜 License
-- This project is licensed under the MIT License.
+- This project is licensed under the [MIT License](https://github.com/RedrootDEV/Ungoogled-Sentinel/blob/main/LICENSE)

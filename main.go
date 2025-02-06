@@ -133,7 +133,7 @@ func sendDiscordNotification(version, githubLink, downloadLink string) {
 	data, _ := json.Marshal(payload)
 	resp, err := http.Post(webhookURL, "application/json", strings.NewReader(string(data)))
 	if err != nil || resp.StatusCode != 204 {
-		fmt.Println("Error al enviar la notificación:", err, "Status:", resp.StatusCode)
+		fmt.Println("Error sending notification:", err, "Status:", resp.StatusCode)
 	}
 }
 
