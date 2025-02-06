@@ -1,13 +1,33 @@
-FROM python:3-alpine
+# Build stage
+FROM golang:alpine AS builder
 
-RUN apk add --no-cache --update \
-    curl \
-    bash
+# Establecer variables de entorno para compilación
+ENV CGO_ENABLED=0 \
+    GOOS=linux \
+    GO111MODULE=on
 
 WORKDIR /app
 
-COPY main.py .
+# Copiar módulos primero para aprovechar el caché de Docker
+COPY go.mod go.sum ./
+RUN go mod download
 
-RUN pip install requests
+# Copiar el resto del código fuente
+COPY . .
 
-CMD ["python", "-u", "main.py"]
+# Compilar el binario
+RUN go build -o /app/main .
+
+# Runtime stage
+FROM alpine:latest
+
+# Instalar ca-certificates para permitir HTTPS
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /app
+
+# Copiar binario compilado y assets
+COPY --from=builder /app/main .
+
+# Comando de ejecución
+ENTRYPOINT ["./main"]
