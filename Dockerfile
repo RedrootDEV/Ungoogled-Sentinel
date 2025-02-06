@@ -9,7 +9,7 @@ ENV CGO_ENABLED=0 \
 WORKDIR /app
 
 # Copiar módulos primero para aprovechar el caché de Docker
-COPY go.mod go.sum ./
+COPY go.mod ./
 RUN go mod download
 
 # Copiar el resto del código fuente
